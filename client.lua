@@ -1,20 +1,20 @@
-Citizen.CreateThread(function()
+CreateThread(function()
 	local shake_counter1 = 0
 	local shake_counter2 = 0
 
 	while true do
-		Citizen.Wait(3)
+		Wait(3)
 		local PlayerId = PlayerId()
 		local PlayerPed = PlayerPedId()
 		if IsPlayerFreeAiming(PlayerId) and IsPedStill(PlayerPed) and not IsPedAimingFromCover(PlayerPed) then
-			Citizen.Wait(100)
+			Wait(100)
 			shake_counter1 = shake_counter1 + 1
 			shake_counter2 = 0
 			if (shake_counter1 == 5) then 
 				ShakeGameplayCam('HAND_SHAKE', Config.shakestill) 
 			end
 		elseif IsPlayerFreeAiming(PlayerId) and not IsPedStill(PlayerPed) then
-			Citizen.Wait(10)
+			Wait(10)
 			shake_counter2 = shake_counter2 + 1
 			shake_counter1 = 0
 			if (shake_counter2 == 5) then 
@@ -28,7 +28,7 @@ Citizen.CreateThread(function()
 			shake_counter1 = 0
 			shake_counter2 = 0
 			StopGameplayCamShaking(true)
-			Citizen.Wait(500)
+			Wait(500)
 		end
 	end
 end)
